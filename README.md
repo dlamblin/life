@@ -1,7 +1,5 @@
-Conway's Game of Life
-===
-Bitwise in Go
-==
+#Conway's Game of Life
+##Bitwise in Go
 
 Having thought about using a nibble to both store the currect state of a cell
 and accumulate a count of its neighbor (in the higher three bits) I went
