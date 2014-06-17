@@ -11,7 +11,7 @@ const (
   cellsPerValue = 16 // a uint64 contains 16 nibbles
   deadCell      = `⋅ `
   liveCell      = `○ `
-  vt100         = `[`
+  vt100         = "\033["
   vtUp          = `A`
   interframe    = 200 * time.Millisecond
 )
@@ -105,7 +105,7 @@ func main() {
     }
   }
 
-  for f:=0;;f++ {
+  for f := 0; ; f++ {
     out(board, f)
     count(board)
     rules(board)
