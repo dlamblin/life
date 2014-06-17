@@ -7,7 +7,7 @@ import (
 
 const (
   rows          = 32
-  cols          = 32
+  cols          = 48
   cellsPerValue = 16 // a uint64 contains 16 nibbles
   deadCell      = `⋅ `
   liveCell      = `○ `
@@ -58,8 +58,43 @@ func main() {
     "                               x",
     "                               x",
   }
+  start_gosper := []string{
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                         1            ",
+    "                       1 1            ",
+    "             11      11            11 ",
+    "            1   1    11            11 ",
+    " 11        1     1   11               ",
+    " 11        1   1 11    1 1            ",
+    "           1     1       1            ",
+    "            1   1                     ",
+    "             11                       ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+    "                                      ",
+  }
 
-  start := start_test
+  _ = start_test
+  start := start_gosper
 
   for i := range start {
     fmt.Println()
