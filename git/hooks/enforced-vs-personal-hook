@@ -1,0 +1,30 @@
+#!/bin/sh
+
+TOPLEVEL=`git rev-parse --show-toplevel`
+CMD_NAME=`basename $0`
+PERSONAL="$TOPLEVEL/.git/hooks/$CMD_NAME.personal"
+ENFORCED="$TOPLEVEL/.git/hooks/$CMD_NAME.enforced"
+# Check if the individual developer has his own hook
+if [ -x "$PERSONAL" ]
+then
+  # If so, run it. $@ passes all the command line arguments passed to this function
+  # If the personal hook fails, fail as well
+  if ! "$PERSONAL" $@
+  then
+    echo "User hook '$CMD_NAME' failed"
+    exit 1
+  fi
+fi
+# Check if the repository has its own hook
+if [ -x "$ENFORCED" ]
+then
+  # If so, run it. $@ passes all the command line arguments passed to this function
+  # If the enforced hook fails, fail as well
+  if ! "$ENFORCED" $@
+  then
+    echo "Repo hook '$CMD_NAME' failed"
+    exit 1
+  fi
+fi
+
+exit 0

@@ -1,0 +1,30 @@
+#!/bin/sh
+gofmt_flags="-s -tabs=false -tabwidth=2"
+
+if git rev-parse --verify HEAD >/dev/null 2>&1
+then
+ against=HEAD
+else
+ # Initial commit: diff against an empty tree object
+ against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
+fi
+
+# Redirect output to stderr.
+exec 1>&2
+
+#--staged or --cached seemed to be broken returning nothing.
+gofiles=$(git diff --name-only --diff-filter=ACM $against |
+  grep '\.go$')
+[ -z "$gofiles" ] && exit 0
+
+unformatted=$(gofmt $gofmt_flags -l $gofiles)
+[ -z "$unformatted" ] && exit 0
+
+# Some files are not gofmt'd. Print message and fail.
+
+echo >&2 "Go files must be formatted with gofmt. Please run:"
+for fn in $unformatted; do
+    echo >&2 "  gofmt $gofmt_flags -w $PWD/$fn"
+done
+
+exit 1
