@@ -13,7 +13,7 @@ fi
 exec 1>&2
 
 #--staged or --cached seemed to be broken returning nothing.
-gofiles=$(git diff --name-only --diff-filter=ACM $against |
+gofiles=$(git diff --cached --name-only --diff-filter=ACM $against |
   grep '\.go$')
 [ -z "$gofiles" ] && exit 0
 
