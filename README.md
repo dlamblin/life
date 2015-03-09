@@ -1,10 +1,10 @@
 #Conway's Game of Life
 ##Bitwise in Go
 
-Having thought about using a nibble to both store the currect state of a cell
+Having thought about using a nibble to both store the current state of a cell
 and accumulate a count of its neighbor (in the higher three bits) I went
 ahead and implemented in Go.  It may not make the most memory/size compact
-implementation, but it was a fun excercise.
+implementation, but it was a fun exercise.
 
 It renders steps to the terminal.
 For now, try using a terminal the size of 96x34 to run the gosper gun.
@@ -20,7 +20,7 @@ state entirely as bits, and then maintain a second bit pack array for the next
 state, or I'd just have a byte array for each; possibly a byte array that
 contains state and count and works similarly to this code.
 
-Here I thought wraping over from one uint64 to the next was hard, but once I
+Here I thought wrapping over from one uint64 to the next was hard, but once I
 had that it was easy to wrap the board edges. It might be harder with a byte
 array or not.
 
