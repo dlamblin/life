@@ -1,15 +1,15 @@
-#Conway's Game of Life
-##Bitwise in Go
+# Conway's Game of Life
+## Bitwise in Go
 
 Having thought about using a nibble to both store the current state of a cell
 and accumulate a count of its neighbor (in the higher three bits) I went
-ahead and implemented in Go.  It may not make the most memory/size compact
+ahead and implemented it in Go.  It may not make the most memory/size compact
 implementation, but it was a fun exercise.
 
 It renders steps to the terminal.
 For now, try using a terminal the size of 96x34 to run the gosper gun.
 
-###Why as nibbles
+### Why as nibbles
 The thought process here was: if you need two grids to store the current and
 next state, then maybe you could do better if you stored the current state and
 counts in the same grid. This is only true if a boolean array takes a byte per
@@ -24,7 +24,7 @@ Here I thought wrapping over from one uint64 to the next was hard, but once I
 had that it was easy to wrap the board edges. It might be harder with a byte
 array or not.
 
-###Nibble roll over
+### Nibble roll over
 The higher 3 bits of the nibble can only store 0-7 and the lowest bit of the
 nibble stores the current state, then having 8 neighbors will roll over the
 bit into the state of the cell to the left. This seems like a problem, but I
@@ -40,7 +40,7 @@ cells will already have been processed, so it will not miss contributing to
 the counts as a neighbor, and once the roll over reaches the most significant
 bit of the byte it should not affect another cell.
 
-###Futher work
+### Futher work
 I'm thinking of:   
 Implementing a couple of versions with different board representations as
 above, adding an option to randomly spawn, and an option to skip showing the
